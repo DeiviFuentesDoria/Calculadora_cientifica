@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Calculadora Científica</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#1f1f1f;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.calculadora{
+background:#2c2c2c;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px black;
+}
+
+#display{
+width:270px;
+height:50px;
+font-size:22px;
+text-align:right;
+margin-bottom:10px;
+padding:5px;
+}
+
+.botones{
+display:grid;
+grid-template-columns:repeat(5,55px);
+gap:6px;
+}
+
+button{
+height:45px;
+font-size:16px;
+border:none;
+border-radius:6px;
+background:#3c3c3c;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#5a5a5a;
+}
+
+.operador{
+background:#ff9500;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="calculadora">
+
+<input type="text" id="display">
+
+<div class="botones">
+
+<button onclick="clearDisplay()">C</button>
+<button onclick="deleteLast()">DEL</button>
+<button onclick="add('(')">(</button>
+<button onclick="add(')')">)</button>
+<button onclick="add('/')">÷</button>
+
+<button onclick="add('7')">7</button>
+<button onclick="add('8')">8</button>
+<button onclick="add('9')">9</button>
+<button onclick="power2()">x²</button>
+<button onclick="add('*')">×</button>
+
+<button onclick="add('4')">4</button>
+<button onclick="add('5')">5</button>
+<button onclick="add('6')">6</button>
+<button onclick="sin()">sin</button>
+<button onclick="add('-')">-</button>
+
+<button onclick="add('1')">1</button>
+<button onclick="add('2')">2</button>
+<button onclick="add('3')">3</button>
+<button onclick="cos()">cos</button>
+<button onclick="add('+')">+</button>
+
+<button onclick="add('0')">0</button>
+<button onclick="add('.')">.</button>
+<button onclick="calculate()">=</button>
+<button onclick="tan()">tan</button>
+<button onclick="pi()">π</button>
+
+<button onclick="sqrt()">√</button>
+<button onclick="log()">log</button>
+<button onclick="ln()">ln</button>
+<button onclick="factorial()">n!</button>
+<button onclick="e()">e</button>
+
+</div>
+
+</div>
+
+<script>
+
+let display = document.getElementById("display")
+let degree = true
+
+function add(value){
+display.value += value
+}
+
+function calculate(){
+try{
+display.value = eval(display.value)
+}catch{
+display.value = "Error"
+}
+}
+
+function clearDisplay(){
+display.value = ""
+}
+
+function deleteLast(){
+display.value = display.value.slice(0,-1)
+}
+
+function sqrt(){
+display.value = Math.sqrt(eval(display.value))
+}
+
+function power2(){
+display.value = Math.pow(eval(display.value),2)
+}
+
+function sin(){
+let value = eval(display.value)
+if(degree){
+value = value * Math.PI / 180
+}
+display.value = Math.sin(value)
+}
+
+function cos(){
+let value = eval(display.value)
+if(degree){
+value = value * Math.PI / 180
+}
+display.value = Math.cos(value)
+}
+
+function tan(){
+let value = eval(display.value)
+if(degree){
+value = value * Math.PI / 180
+}
+display.value = Math.tan(value)
+}
+
+function log(){
+display.value = Math.log10(eval(display.value))
+}
+
+function ln(){
+display.value = Math.log(eval(display.value))
+}
+
+function pi(){
+display.value += Math.PI
+}
+
+function e(){
+display.value += Math.E
+}
+
+function factorial(){
+
+let n = eval(display.value)
+
+let result = 1
+
+for(let i=1;i<=n;i++){
+result = result * i
+}
+
+display.value = result
+
+}
+
+</script>
+
+</body>
+
+</html>
